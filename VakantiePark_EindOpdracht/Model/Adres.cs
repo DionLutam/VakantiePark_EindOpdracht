@@ -8,6 +8,5 @@ namespace VakantieParkBL.Model
 {
     internal class Adres
     {
-        //just to test git commits
     }
 }
