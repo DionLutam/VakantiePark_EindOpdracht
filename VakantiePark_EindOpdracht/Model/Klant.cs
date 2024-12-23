@@ -3,10 +3,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VakantieParkBL.Exceptions;
 
 namespace VakantieParkBL.Model
 {
-    internal class klant
+    public class Klant
     {
+        private int _id;
+        private string _naam;
+        private string _adres;
+
+        public Klant(int iD, string naam, string adres)
+        {
+            ID = iD;
+            Naam = naam;
+            Adres = adres;
+        }
+
+        public List<Reservatie> Reservaties { get; set; } = new List<Reservatie>();
+        public int ID
+        {
+            get { return _id; }
+            set
+            {
+                _id = (value <= 0) ? throw new ModelException("KlantID is negatief") : value;
+            }
+        }
+
+        public string Naam
+        {
+            get { return _naam; }
+            set
+            {
+                _naam = String.IsNullOrWhiteSpace(value) ? throw new ModelException("Naam Klant is leeg") : value;
+            }
+
+        }
+
+        public string Adres
+        {
+            get { return _adres; }
+            set
+            {
+                _adres = String.IsNullOrWhiteSpace(value) ? throw new ModelException("Adres Klant is leeg") : value;
+            }
+        }
     }
 }

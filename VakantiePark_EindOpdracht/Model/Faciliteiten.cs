@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VakantieParkBL.Exceptions;
+﻿using VakantieParkBL.Exceptions;
 
 namespace VakantieParkBL.Model
 {
@@ -11,18 +6,18 @@ namespace VakantieParkBL.Model
     {
         private string _beschrijving;
         private int _id;
-
-        public Faciliteiten (int id, string beschrijving)
+        List<Park> parken = new List<Park>();
+        public Faciliteiten(int id, string beschrijving)
         {
             id = Id;
-            beschrijving = Beschrijving)
+            beschrijving = Beschrijving;
         }
         public string Beschrijving
         {
             get { return _beschrijving; }
-            set
+            private set
             {
-                _beschrijving = String.IsNullOrWhiteSpace(value) 
+                _beschrijving = String.IsNullOrWhiteSpace(value)
                     ? throw new ModelException("Beschrijving is leeg of incorrect") : value;
             }
         }
@@ -30,11 +25,11 @@ namespace VakantieParkBL.Model
         public int Id
         {
             get { return _id; }
-            set
+            private set
             {
-                _id = value <= 0 
+                _id = value <= 0
                     ? throw new ModelException("Faciliteiten ID is negatief of 0") : value;
             }
-        }   
+        }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Markup;
-using VakantieParkBL.Exceptions;
+﻿using VakantieParkBL.Exceptions;
 
 namespace VakantieParkBL.Model
 {
@@ -23,12 +17,12 @@ namespace VakantieParkBL.Model
         public int Id
         {
             get { return _id; }
-            set
+            private set
             {
                 if (value <= 0)
                 {
                     throw new ModelException("Park_Id is kleiner of 0");
-                } 
+                }
                 _id = value;
             }
         }
@@ -36,23 +30,23 @@ namespace VakantieParkBL.Model
         public string Naam
         {
             get { return _naam; }
-            set
+            private set
             {
-               _naam = String.IsNullOrWhiteSpace(value) ? 
-                    throw new ModelException("Park naam is leeg") : value;
+                _naam = String.IsNullOrWhiteSpace(value) ?
+                     throw new ModelException("Park naam is leeg") : value;
             }
         }
 
         public string Locatie
         {
             get { return _locatie; }
-            set
+            private set
             {
-                _locatie = String.IsNullOrWhiteSpace(value) ? 
+                _locatie = String.IsNullOrWhiteSpace(value) ?
                     throw new ModelException("Park locatie is leeg") : value;
             }
         }
 
-            
+
     }
 }
