@@ -8,5 +8,7 @@ namespace VakantieParkBL.Model
 {
     public class Reservatie
     {
+        private int _id;
+        public Klant Klant { get; set; }
     }
 }

@@ -2,12 +2,12 @@
 
 namespace VakantieParkBL.Model
 {
-    public class Faciliteiten
+    public class Faciliteit
     {
         private string _beschrijving;
         private int _id;
-        List<Park> parken = new List<Park>();
-        public Faciliteiten(int id, string beschrijving)
+        public List<Park> Parken { get; private set; } = new List<Park>();
+        public Faciliteit(int id, string beschrijving)
         {
             id = Id;
             beschrijving = Beschrijving;
@@ -30,6 +30,27 @@ namespace VakantieParkBL.Model
                 _id = value <= 0
                     ? throw new ModelException("Faciliteiten ID is negatief of 0") : value;
             }
+        }
+
+        public void VoegParkToe(Park park)
+        {
+            try
+            {
+                if(!this.Parken.Contains(park))
+                {
+                    this.Parken.Add(park);
+                }
+                else
+                {
+                    throw new ModelException("Faciliteit bevat park");
+                }
+
+            }
+            catch (Exception ex) 
+            {
+                throw new ModelException("VoegParkToe", ex);
+            }
+
         }
     }
 }

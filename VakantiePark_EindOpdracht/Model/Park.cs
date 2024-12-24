@@ -14,6 +14,8 @@ namespace VakantieParkBL.Model
             naam = Naam;
             locatie = Locatie;
         }
+        public List<Faciliteit> Faciliteiten { get; private set; } = new List<Faciliteit>();
+        public List<Huis> Huizen { get; private set; } = new List<Huis>();
         public int Id
         {
             get { return _id; }
@@ -47,6 +49,10 @@ namespace VakantieParkBL.Model
             }
         }
 
+        public void VoegFaciliteitToe(Faciliteit faciliteit)
+        {
+            this.Faciliteiten.Add(faciliteit);
+        }
 
     }
 }

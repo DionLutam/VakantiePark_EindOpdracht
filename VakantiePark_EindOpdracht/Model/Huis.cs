@@ -13,15 +13,17 @@ namespace VakantieParkBL.Model
         private string _straat;
         private int _nummer;
         private int _aantalPersonen;
-        public Park Park {  get; set; }
+        public Park Park {  get; private set; }
+        public List<Reservatie> Reservaties { get; private set; } = new List<Reservatie> ();
 
-        public Huis(int iD, string straat, int nummer, bool isActief, int aantalPersonen)
+        public Huis(int iD, string straat, int nummer, bool isActief, int aantalPersonen, Park park)
         {
             ID = iD;
             Straat = straat;
             Nummer = nummer;
             IsActief = isActief;
             AantalPersonen = aantalPersonen;
+            Park = park;
         }
 
         public int ID 
@@ -63,5 +65,62 @@ namespace VakantieParkBL.Model
         }
 
         public bool IsActief { get; private set; } = true;
+
+        public void ZetHuisInOnderhoud()
+        {
+            try
+            {
+                this.IsActief = false;
+            }
+            catch(Exception ex)
+            {
+                throw new ModelException("ZetHuisInOnderhoud", ex);
+            }
+        }
+
+        public void ZetHuisBeschikbaar()
+        {
+            try
+            {
+                this.IsActief = true;
+            }
+            catch (Exception ex)
+            {
+                throw new ModelException("ZetHuisBeschikbaar", ex);
+            }
+        }
+
+        public void ZetPark(Park park)
+        {
+            try
+            {
+                this.Park = park;
+            }
+            catch (Exception ex)
+            {
+                throw new ModelException("ZetPark", ex);
+            }
+
+        }
+
+        public void VoegReservatieToe(Reservatie reservatie)
+        {
+            try
+            {
+                if (!this.Reservaties.Contains(reservatie))
+                {
+                    this.Reservaties.Add(reservatie);
+                }
+                else
+                {
+                    throw new ModelException("Reservatie voor huis al toegevoegd");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ModelException("VoegReservatieToe", ex);
+            }
+
+        }
     }
 }
