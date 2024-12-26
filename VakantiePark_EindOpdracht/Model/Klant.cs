@@ -46,7 +46,22 @@ namespace VakantieParkBL.Model
 
         public void VoegReservatieToe(Reservatie reservatie)
         {
-            this.Reservaties.Add(reservatie);
+            try
+            {
+                if(!this.Reservaties.Contains(reservatie))
+                {
+                    Reservaties.Add(reservatie);
+                }
+                else
+                {
+                    throw new ModelException("Reservatie reeds toegevoegd");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ModelException("VoegReservatieToe", ex);
+            }
+
         }
     }
 }

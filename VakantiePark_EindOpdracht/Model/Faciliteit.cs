@@ -9,8 +9,8 @@ namespace VakantieParkBL.Model
         public List<Park> Parken { get; private set; } = new List<Park>();
         public Faciliteit(int id, string beschrijving)
         {
-            id = Id;
-            beschrijving = Beschrijving;
+            Id = id;
+            Beschrijving = beschrijving;
         }
         public string Beschrijving
         {
