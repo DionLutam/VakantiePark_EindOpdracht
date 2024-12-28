@@ -3,6 +3,7 @@ using System.Data;
 using VakantieParkBL.Exceptions;
 using VakantieParkBL.Interfaces;
 using VakantieParkBL.Model;
+using VakantieParkUI_ParkManagement.Model;
 
 namespace VakantieParkDL_SQL
 {
@@ -13,6 +14,36 @@ namespace VakantieParkDL_SQL
         public ParkRepository(string connString)
         {
             this.connString = connString;
+        }
+
+        public IReadOnlyCollection<ReservatieInfoKlantId> LeesReservatiesViaKlantId(int klantId)
+        {
+            try
+            {
+                string query = "select p.naam, p.locatie, r.startdatum, r.einddatum, h.nummer from Reservatie r " +
+                    "join huis h on r.huisId = h.id " +
+                    "join park p on h.parkId = p.id where r.klantId=@klantId order by r.startdatum;";
+                List<ReservatieInfoKlantId> reservatieLijst = new List<ReservatieInfoKlantId>();
+
+                using (SqlConnection conn = new SqlConnection(connString))
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    conn.Open();
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@klantId", klantId);
+                    IDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        reservatieLijst.Add(new ReservatieInfoKlantId((string)reader["naam"], (string)reader["locatie"],
+                            (DateTime)reader["startdatum"], (DateTime)reader["einddatum"], (int)reader["nummer"]));
+                    }
+                }
+                return reservatieLijst;
+            }
+            catch (Exception ex)
+            {
+                throw new RepositoryException("LeesReservatiesVieKlantId", ex);
+            }
         }
 
         public void SchrijfKlanten(List<Klant> klanten)
@@ -174,7 +205,7 @@ namespace VakantieParkDL_SQL
                     cmd.Parameters.Add(new SqlParameter("@klantId", SqlDbType.Int));
                     cmd.Parameters.Add(new SqlParameter("@huisId", SqlDbType.Int));
 
-                    foreach(Reservatie reservatie in  reservaties)
+                    foreach (Reservatie reservatie in reservaties)
                     {
                         cmd.Parameters["@startdatum"].Value = reservatie.StartDatum;
                         cmd.Parameters["@einddatum"].Value = reservatie.EndDatum;
@@ -187,7 +218,7 @@ namespace VakantieParkDL_SQL
                     cmd.Parameters.Clear();
                     cmd.CommandText = probleemReservatieQuery;
 
-                    cmd.Parameters.Add(new SqlParameter("@reservatieId",SqlDbType.Int));
+                    cmd.Parameters.Add(new SqlParameter("@reservatieId", SqlDbType.Int));
 
                     IEnumerable<Reservatie> probleemReservaties = parken
                         .SelectMany(park => park.Huizen)

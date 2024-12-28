@@ -1,0 +1,20 @@
+﻿<Window x:Class="VakantieParkUI_ParkManagement.StartScherm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VakantieParkUI_ParkManagement"
+        mc:Ignorable="d"
+        Title="StartScherm" Height="450" Width="800" Background="SkyBlue">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button Background="White" Grid.Column="0" Content="Klant" Margin="100,165,100,168" Click="Button_Click_Klant" Grid.Row="1" FontSize="20"/>
+        <Button Background="White" Grid.Column="1" Content="Beheerder" Margin="100,165,100,168" Click="Button_Click_Beheerder" FontSize="20"/>
+    </Grid>
+</Window>
