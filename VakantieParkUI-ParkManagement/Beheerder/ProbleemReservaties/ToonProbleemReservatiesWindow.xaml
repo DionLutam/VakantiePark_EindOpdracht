@@ -1,11 +1,11 @@
-﻿<Window x:Class="VakantieParkUI_ParkManagement.Klant.MijnReservatiesWindow"
+﻿<Window x:Class="VakantieParkUI_ParkManagement.Beheerder.ProbleemReservaties.ToonProbleemReservatiesWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:VakantieParkUI_ParkManagement.Klant"
+        xmlns:local="clr-namespace:VakantieParkUI_ParkManagement.Beheerder.ProbleemReservaties"
         mc:Ignorable="d"
-        Title="MijnReservatiesWindow" Height="450" Width="800">
+        Title="ToonProbleemReservatiesWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -17,17 +17,19 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"
-             Name="KlantReservatiesDataGrid" IsReadOnly="True" ColumnWidth="*" AutoGenerateColumns="False" Margin="0,0,0,25" Grid.RowSpan="2">
+        <DataGrid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6"
+       Name="ProbleemReservatiesDataGrid" IsReadOnly="True" ColumnWidth="*" AutoGenerateColumns="False" Margin="0,0,0,25" Grid.RowSpan="2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Park" Binding="{Binding ParkName}" />
-                <DataGridTextColumn Header="Locatie" Binding="{Binding ParkLocation}" />
+                <DataGridTextColumn Header="ReservatieID" Binding="{Binding ReservatieId}" />
+                <DataGridTextColumn Header="Park naam" Binding="{Binding ParkNaam}" />
+                <DataGridTextColumn Header="KlantID" Binding="{Binding KlantId}" />
                 <DataGridTextColumn Header="Check-In" Binding="{Binding CheckIn,StringFormat=\{0:dd-MM-yyyy\}}" />
                 <DataGridTextColumn Header="Check-Out" Binding="{Binding CheckOut, StringFormat=\{0:dd-MM-yyyy\}}" />
                 <DataGridTextColumn Header="Huisnummer" Binding="{Binding HuisNummer}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Close" Grid.Column="1" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="141,76,0,5" Width="82" Grid.Row="1" Click="Button_Click_Close"/>
+        <Button Content="Close" Grid.Column="2" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="0,76,0,0" Width="82" Grid.Row="1" Click="Button_Click_Close"/>
     </Grid>
 </Window>

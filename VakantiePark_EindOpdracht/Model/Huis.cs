@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using VakantieParkBL.Exceptions;
+﻿using VakantieParkBL.Exceptions;
 
 namespace VakantieParkBL.Model
 {
@@ -14,8 +8,8 @@ namespace VakantieParkBL.Model
         private string _straat;
         private int _nummer;
         private int _capaciteit;
-        public Park Park {  get; private set; }
-        public List<Reservatie> Reservaties { get; private set; } = new List<Reservatie> ();
+        public Park Park { get; private set; }
+        public List<Reservatie> Reservaties { get; private set; } = new List<Reservatie>();
         public List<Reservatie> ProbleemReservaties { get; private set; } = new List<Reservatie>();
 
         public Huis(int iD, string straat, int nummer, bool isActief, int capaciteit, Park park)
@@ -28,13 +22,13 @@ namespace VakantieParkBL.Model
             Park = park;
         }
 
-        public int ID 
-        {   
-            get { return _id; } 
-            private set 
-            { 
-                _id = (value <= 0) ? 
-                    throw new ModelException("HuisID is negatief") : value; 
+        public int ID
+        {
+            get { return _id; }
+            private set
+            {
+                _id = (value < 0) ?
+                    throw new ModelException("HuisID is negatief") : value;
             }
         }
 
@@ -43,7 +37,7 @@ namespace VakantieParkBL.Model
             get { return _straat; }
             private set
             {
-                _straat = String.IsNullOrWhiteSpace(value) ? 
+                _straat = String.IsNullOrWhiteSpace(value) ?
                     throw new ModelException("Straat is leeg") : value;
             }
         }
@@ -53,7 +47,7 @@ namespace VakantieParkBL.Model
             get { return _capaciteit; }
             private set
             {
-                _capaciteit = (value <= 0) ? throw new ModelException("Huis moet min. voor 1 Persoon zijn") : value;
+                _capaciteit = (value < 1) ? throw new ModelException("Huis moet min. voor 1 Persoon zijn") : value;
             }
         }
 
@@ -68,66 +62,66 @@ namespace VakantieParkBL.Model
 
         public bool IsActief { get; private set; } = true;
 
+        public bool IsBeschikbaar()
+        {
+            return this.IsActief;
+        }
+        public bool HeeftReservaties()
+        {
+            return this.Reservaties.Any();
+        }
+        //public bool HeeftActieveReservatie()
+        //{
+        //    try
+        //    {
+        //        if (this.Reservaties.Any())
+        //        {
+        //            foreach (Reservatie reservatie in this.Reservaties)
+        //            {
+        //                if (reservatie.StartDatum <= DateTime.Now && reservatie.EndDatum >= DateTime.Now)
+        //                {
+        //                    return true;
+        //                }
+        //            }
 
+        //        }
+        //        else
+        //        {
+        //            throw new ModelException("Huis heeft geen reservaties");
+        //        }
+        //        return false;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new ModelException("HeeftActieveReservatie", ex);
+        //    }
+
+        //}
         public void ZetHuisInOnderhoud()
         {
             try
             {
-
-                if(this.Reservaties.Any())
+                if (this.IsBeschikbaar() && this.HeeftReservaties())
                 {
                     foreach (Reservatie reservatie in this.Reservaties)
                     {
-                        if (reservatie.StartDatum <= DateTime.Now && reservatie.EndDatum >= DateTime.Now)
-                        {
-                            throw new ModelException("Huis kan niet in onderhoud, is niet leeg");
-                        }
-                        else if(reservatie.StartDatum > DateTime.Now)
+
+                        if (reservatie.StartDatum > DateTime.Now)
                         {
                             ProbleemReservaties.Add(reservatie);
                         }
-                        
+
                     }
+                }
+                else
+                {
+                    throw new ModelException("Huis kan niet in onderhoud, is bezet");
                 }
                 this.IsActief = false;
             }
-            catch(Exception ex)
-            {
-                throw new ModelException("ZetHuisInOnderhoud", ex);
-            }
-        }
-
-        //public void ZetProbleemReservaties()
-        //{
-        //    try
-        //    {
-        //        if (this.IsActief == false && this.Reservaties.Any())
-        //        {
-        //            foreach (Reservatie reservatie in this.Reservaties)
-        //            {
-        //                if(reservatie.StartDatum > DateTime.Now)
-        //                {
-        //                    ProbleemReservatie.Add(reservatie);
-        //                }
-        //            }
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new ModelException("ZetProbleemReservaties", ex);
-        //    }
-        //}
-
-        public void ZetHuisBeschikbaar()
-        {
-            try
-            {
-                this.IsActief = true;
-            }
             catch (Exception ex)
             {
-                throw new ModelException("ZetHuisBeschikbaar", ex);
+                throw new ModelException("ZetHuisInOnderhoud", ex);
             }
         }
 
@@ -152,9 +146,9 @@ namespace VakantieParkBL.Model
                 {
                     this.Reservaties.Add(reservatie);
 
-                    if(this.IsActief==false)
+                    if (this.IsBeschikbaar() == false)
                     {
-                        if (reservatie.StartDatum > DateTime.Now)
+                        if (reservatie.IsInToekomst())
                         {
                             this.ProbleemReservaties.Add(reservatie);
                         }
@@ -172,5 +166,76 @@ namespace VakantieParkBL.Model
 
         }
 
+        public bool HeeftVoldoendeCapaciteit(int aantalPersonen)
+        {
+            try
+            {
+                return (this.Capaciteit >= aantalPersonen);
+            }
+            catch (Exception ex)
+            {
+                throw new ModelException("HeeftVoldoendeCapaciteit", ex);
+            }
+        }
+
+        public bool IsBeschikbaar(int aantalPersonen, DateTime startDatum, DateTime eindDatum)
+        {
+            try
+            {
+                if (aantalPersonen > 0 && startDatum != DateTime.MinValue && eindDatum != DateTime.MinValue)
+                {
+                    if (this.HeeftVoldoendeCapaciteit(aantalPersonen) && this.IsBeschikbaar())
+                    {
+                        foreach (Reservatie reservatie in this.Reservaties)
+                        {
+                            if (reservatie.CheckOverlapping(startDatum, eindDatum))
+                            {
+                                return false;
+                            }
+
+                        }
+                        return true;
+                    }
+                    return false;
+                }
+                else
+                {
+                    throw new ModelException("Incorrecte Data");
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new ModelException("IsBeschikbaar()", ex);
+            }
+        }
+
+        public void VoegReservatiesToe(IReadOnlyCollection<Reservatie> reservaties)
+        {
+            try
+            {
+                foreach (Reservatie reservatie in reservaties)
+                {
+                    this.VoegReservatieToe(reservatie);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ModelException("VoegReservatiesToe", ex);
+            }
+        }
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Huis otherHuis = (Huis)obj;
+
+
+            return this.ID == otherHuis.ID;
+        }
     }
 }

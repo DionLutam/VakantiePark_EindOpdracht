@@ -1,0 +1,19 @@
+﻿<Window x:Class="VakantieParkUI_ParkManagement.Beheerder.ProbleemReservaties.GeefHuisIDWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VakantieParkUI_ParkManagement.Beheerder.ProbleemReservaties"
+        mc:Ignorable="d"
+        Title="GeefHuisIDWindow" Height="450" Width="800" Background="SkyBlue" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="Geef het huis ID:" Margin="10" HorizontalAlignment="Center"/>
+            <TextBox Name="HuisIdTextBox" IsEnabled="True" Margin="50,10" Height="16" Width="123"/>
+            <Button Content="Zoek" Click="Button_Click_Zoek" Width="84" Margin="60,10" Height="26"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,42 @@
+﻿<Window
+    x:Class="VakantieParkUI_ParkManagement.KlantWindows.KlantIdWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:VakantieParkUI_ParkManagement.KlantWindows"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="KlantIdWindow"
+    Width="800"
+    Height="450"
+    Background="#FF2D2D30"
+    mc:Ignorable="d"
+    WindowStartupLocation="CenterScreen"
+    >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock
+                Margin="10"
+                HorizontalAlignment="Center"
+                Text="Geef je klant ID:" 
+                Foreground="White"/>
+            <TextBox
+                Name="KlantIdTextBox"
+                Width="123"
+                Height="16"
+                Margin="50,10"
+                IsEnabled="True" />
+            <Button
+                Width="84"
+                Height="26"
+                Margin="60,10"
+                Click="Button_Click_Enter"
+                Content="Enter"
+                Background="#FF007ACC"
+                Foreground="White"
+                BorderBrush="#FF004C8C"/>
+        </StackPanel>
+    </Grid>
+</Window>

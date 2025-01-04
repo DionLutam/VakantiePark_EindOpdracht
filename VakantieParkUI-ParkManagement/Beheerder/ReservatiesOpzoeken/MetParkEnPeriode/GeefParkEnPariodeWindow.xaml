@@ -1,0 +1,27 @@
+﻿<Window x:Class="VakantieParkUI_ParkManagement.Beheerder.ReservatiesOpzoeken.MetParkEnPeriode.GeefParkEnPariodeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VakantieParkUI_ParkManagement.Beheerder.ReservatiesOpzoeken.MetParkEnPeriode"
+        mc:Ignorable="d"
+        Title="GeefParkEnPariodeWindow" Height="450" Width="800" Background="SkyBlue" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="Vul het park naam:" Margin="10" HorizontalAlignment="Center" FontSize="20"/>
+            <TextBox Name="ParkNaamTextBox" IsEnabled="True" Margin="50,10" Height="22" Width="212"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" Grid.Row="1">
+            <TextBlock Text="Check-In" Margin="50,5,50,5" FontSize="16"/>
+            <DatePicker Name="startdatumDatePicker" Margin="50,5,50,30"/>
+            <TextBlock Text="Check-Out" Margin="50,5,50,5" FontSize="16"/>
+            <DatePicker Name="einddatumDatePicker" Margin="50,5,50,30"/>
+        </StackPanel>
+        <Button Content="Enter" Click="Button_Click_Enter" Width="84" Margin="60,10" Height="26" Grid.Row="2"/>
+    </Grid>
+</Window>

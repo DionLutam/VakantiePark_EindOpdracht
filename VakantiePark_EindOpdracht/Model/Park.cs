@@ -121,10 +121,6 @@ namespace VakantieParkBL.Model
                 {
                     this.Huizen.Add(huis);
                 }
-                else
-                {
-                    throw new ModelException("Park bevat al huis");
-                }
 
             }
             catch (Exception ex) 
@@ -134,5 +130,53 @@ namespace VakantieParkBL.Model
 
         }
 
+        public bool HasFaciliteit(string naam)
+        {
+            try
+            {
+                int index = this.Faciliteiten.FindIndex(x => x.Beschrijving == naam);
+                return index >= 0;
+            }
+            catch (Exception ex)
+            {
+                throw new ModelException("HasFaciliteit", ex);
+            }
+        }
+
+        public List<Huis> GetBeschikbareHuizen(int aantalPersonen, DateTime startDatum, DateTime eindDatum)
+        {
+            try
+            {
+                List<Huis> beschikbareHuizen = new List<Huis>();
+                foreach(Huis huis in this.Huizen)
+                {
+                    if (huis.IsBeschikbaar(aantalPersonen,startDatum,eindDatum))
+                    {
+                        beschikbareHuizen.Add(huis);
+                    }
+                }
+                return beschikbareHuizen;
+            }
+            catch (Exception ex)
+            {
+                throw new ModelException("GetBeschikbareHuizen", ex);
+            }
+        }
+
+        public void VoegHuizenToe(IReadOnlyCollection<Huis> huizen)
+        {
+            try
+            {
+                foreach (Huis huis in huizen)
+                {
+                    this.VoegHuisToe(huis);
+                }
+
+            }
+            catch(Exception ex) 
+            {
+                throw new ModelException("VoegHuizenToe", ex);
+            }
+        }
     }
 }

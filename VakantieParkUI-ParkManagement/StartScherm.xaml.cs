@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using VakantieParkBL.Exceptions;
-using VakantieParkUI_ParkManagement.Klant;
+using VakantieParkUI_ParkManagement.Beheerder;
+using VakantieParkUI_ParkManagement.KlantWindows;
 
 namespace VakantieParkUI_ParkManagement
 {
@@ -42,7 +43,16 @@ namespace VakantieParkUI_ParkManagement
 
         private void Button_Click_Beheerder(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                BeheerderMenu bm = new BeheerderMenu();
+                bm.ShowDialog();
 
+            }
+            catch (Exception ex)
+            {
+                throw new UIException("Button_Click_Beheerder", ex);
+            }
         }
     }
 }

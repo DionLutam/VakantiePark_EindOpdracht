@@ -309,8 +309,8 @@ public class FileProcessor : IFileProcessor
 
                     Reservatie reservatie = new Reservatie(reservatieID, StartDatum, EindDatum, klant, huis);
                     reservaties.Add(reservatieID, reservatie);
-                    reservatie.ZetHuis(huis);
-                    reservatie.ZetKlant(klant);
+                    //reservatie.ZetHuis(huis);
+                    //reservatie.ZetKlant(klant);
                     huis.VoegReservatieToe(reservatie);
                     klant.VoegReservatieToe(reservatie);
                 }

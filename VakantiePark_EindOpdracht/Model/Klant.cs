@@ -21,7 +21,7 @@ namespace VakantieParkBL.Model
             get { return _id; }
             private set
             {
-                _id = (value <= 0) ? throw new ModelException("KlantID is negatief") : value;
+                _id = (value < 0) ? throw new ModelException("KlantID is negatief") : value;
             }
         }
 

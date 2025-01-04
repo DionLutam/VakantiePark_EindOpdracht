@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VakantieParkBL.Exceptions;
+﻿using VakantieParkBL.Exceptions;
 
 namespace VakantieParkBL.Model
 {
@@ -23,11 +18,11 @@ namespace VakantieParkBL.Model
             get { return _id; }
             private set
             {
-                _id = (value <= 0) ? throw new ModelException("ReservatieID is negatief"):value;
+                _id = (value <= 0) ? throw new ModelException("ReservatieID is negatief") : value;
             }
         }
 
-        public Reservatie(int id, DateTime startDatum, DateTime endDatum, Klant klant, Huis huis) : this(startDatum, endDatum, klant,huis)
+        public Reservatie(int id, DateTime startDatum, DateTime endDatum, Klant klant, Huis huis) : this(startDatum, endDatum, klant, huis)
         {
             Id = id;
         }
@@ -46,7 +41,7 @@ namespace VakantieParkBL.Model
             {
                 this.Id = id;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw new ModelException("ZetReservatieID", ex);
             }
@@ -75,5 +70,52 @@ namespace VakantieParkBL.Model
                 throw new ModelException("ZetHuis", ex);
             }
         }
+        public bool IsInToekomst()
+        {
+            if (this.StartDatum > DateTime.Now)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool CheckOverlapping(DateTime startDatum, DateTime eindDatum)
+        {
+            try
+            {
+                if ((startDatum <= eindDatum) && (startDatum >= DateTime.Today))
+                {
+                    if (startDatum <= this.EndDatum && eindDatum >= this.StartDatum)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                else
+                {
+                    throw new ModelException("StartDatum is incorrect");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ModelException("CheckOverlapping", ex);
+            }
+
+        }
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Reservatie andereReservatie = (Reservatie)obj;
+
+
+            return this.Id == andereReservatie.Id;
+        }
     }
+
 }
+
+

@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VakantieParkUI_ParkManagement.Beheerder"
         mc:Ignorable="d"
-        Title="BeheerderMenu" Height="450" Width="800" Background="SkyBlue">
+        Title="BeheerderMenu" Height="450" Width="800" Background="SkyBlue" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Name="Button_Click_ZoekReservatie" Content="Zoek Reservatie" HorizontalAlignment="Center" Margin="0,50,0,38" Width="308" Grid.Row="0" Background="White"/>
-        <Button Name="Button_Click_ProbleemReservatie" Content="Probleem Reservaties" HorizontalAlignment="Center" Margin="0,50,0,38" Width="308" Grid.Row="1" Background="White"/>
-        <Button Name="Button_Click_HuisOnderhoud" Content="Huis Onderhoud" HorizontalAlignment="Center" Margin="0,50,0,38" Width="308" Grid.Row="2" Background="White"/>
+        <Button Click ="Button_Click_ZoekReservatie" Content="Zoek Reservatie" HorizontalAlignment="Center" Margin="0,50,0,38" Width="308" Grid.Row="0" Background="White"/>
+        <Button Click ="Button_Click_ProbleemReservatie" Content="Probleem Reservaties" HorizontalAlignment="Center" Margin="0,50,0,38" Width="308" Grid.Row="1" Background="White"/>
+        <Button Click ="Button_Click_HuisOnderhoud" Content="Huis Onderhoud" HorizontalAlignment="Center" Margin="0,50,0,38" Width="308" Grid.Row="2" Background="White"/>
 
     </Grid>
 </Window>

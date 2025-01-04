@@ -11,18 +11,18 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using VakantieParkUI_ParkManagement.Model;
+using VakantieParkBL.DTO;
+using VakantieParkBL.Exceptions;
+using VakantieParkBL.Model;
 
-namespace VakantieParkUI_ParkManagement.Klant
+namespace VakantieParkUI_ParkManagement.Beheerder
 {
     /// <summary>
-    /// Interaction logic for MijnReservatiesWindow.xaml
+    /// Interaction logic for KlantReservatiesWindow.xaml
     /// </summary>
-    /// 
-    //select p.naam, p.locatie, r.startdatum, r.einddatum, h.nummer from Reservatie r join huis h on r.huisId = h.id join park p on h.parkId = p.id where r.klantId='3282' order by r.startdatum;
-    public partial class MijnReservatiesWindow : Window
+    public partial class KlantReservatiesWindow : Window
     {
-        public MijnReservatiesWindow(IReadOnlyCollection<ReservatieInfoKlantId> reservaties)
+        public KlantReservatiesWindow(IReadOnlyCollection<ReservatieInfo>reservaties)
         {
             InitializeComponent();
             KlantReservatiesDataGrid.ItemsSource = reservaties;
@@ -30,7 +30,14 @@ namespace VakantieParkUI_ParkManagement.Klant
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new UIException("ButtonClose", ex);
+            }
         }
     }
 }

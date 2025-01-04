@@ -1,0 +1,31 @@
+﻿<Window x:Class="VakantieParkUI_ParkManagement.Beheerder.ReservatiesOpzoeken.MetParkEnPeriode.ToonReservatiesPeriodeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VakantieParkUI_ParkManagement.Beheerder.ReservatiesOpzoeken.MetParkEnPeriode"
+        mc:Ignorable="d"
+        Title="ToonReservatiesPeriodeWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"
+       Name="ParkReservatiesDataGrid" IsReadOnly="True" ColumnWidth="*" AutoGenerateColumns="False" Margin="0,0,0,25" Grid.RowSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Park Naam" Binding="{Binding ParkNaam}" />
+                <DataGridTextColumn Header="KlantID" Binding="{Binding KlantId}" />
+                <DataGridTextColumn Header="Klant naam" Binding="{Binding KlantNaam}" />
+                <DataGridTextColumn Header="Huisnummer" Binding="{Binding HuisNummer}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Close"  HorizontalAlignment="Center"  Width="82" Click="Button_Click_Close" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,409,0,5" Grid.RowSpan="2"/>
+    </Grid>
+</Window>

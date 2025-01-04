@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:VakantieParkUI_DataUpload"
              StartupUri="UploadFilesWindow.xaml">
     <Application.Resources>
-         
+
     </Application.Resources>
+
 </Application>

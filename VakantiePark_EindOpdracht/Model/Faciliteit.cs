@@ -27,7 +27,7 @@ namespace VakantieParkBL.Model
             get { return _id; }
             private set
             {
-                _id = value <= 0
+                _id = value < 0
                     ? throw new ModelException("Faciliteiten ID is negatief of 0") : value;
             }
         }
@@ -51,6 +51,14 @@ namespace VakantieParkBL.Model
                 throw new ModelException("VoegParkToe", ex);
             }
 
+        }
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || this.GetType() != obj.GetType())  return false;
+
+            Faciliteit otherFaciliteit = (Faciliteit)obj;
+
+            return otherFaciliteit.Id == this.Id;
         }
     }
 }

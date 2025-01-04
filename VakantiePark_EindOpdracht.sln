@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VakantieParkDL_SQL", "Vakan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VakantieParkDL_FileProcessor", "VakantieParkDL_FileProcessor\VakantieParkDL_FileProcessor.csproj", "{6450DDB0-D02E-4D47-8343-BA4D17910FFD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestingMethods", "TestingMethods\TestingMethods.csproj", "{9BD866FF-B7AE-47ED-9097-582379C5E86A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VakantieParkUI-DataUpload", "VakantieParkUI-DataUpload\VakantieParkUI-DataUpload.csproj", "{839AEA06-DC83-4525-93EA-BA8E075E29CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VakantieParkUI-ParkManagement", "VakantieParkUI-ParkManagement\VakantieParkUI-ParkManagement.csproj", "{74D4FF40-CBB0-48FC-A9BA-8F0006E82512}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VakantieParkUI-ParkManagement", "VakantieParkUI-ParkManagement\VakantieParkUI-ParkManagement.csproj", "{74D4FF40-CBB0-48FC-A9BA-8F0006E82512}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestsModel", "UnitTestsModel\UnitTestsModel.csproj", "{BE070C4E-B1A7-48A1-A703-251BEFC58B83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +33,6 @@ Global
 		{6450DDB0-D02E-4D47-8343-BA4D17910FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6450DDB0-D02E-4D47-8343-BA4D17910FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6450DDB0-D02E-4D47-8343-BA4D17910FFD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9BD866FF-B7AE-47ED-9097-582379C5E86A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9BD866FF-B7AE-47ED-9097-582379C5E86A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9BD866FF-B7AE-47ED-9097-582379C5E86A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9BD866FF-B7AE-47ED-9097-582379C5E86A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{839AEA06-DC83-4525-93EA-BA8E075E29CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{839AEA06-DC83-4525-93EA-BA8E075E29CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{839AEA06-DC83-4525-93EA-BA8E075E29CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{74D4FF40-CBB0-48FC-A9BA-8F0006E82512}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74D4FF40-CBB0-48FC-A9BA-8F0006E82512}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74D4FF40-CBB0-48FC-A9BA-8F0006E82512}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE070C4E-B1A7-48A1-A703-251BEFC58B83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE070C4E-B1A7-48A1-A703-251BEFC58B83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE070C4E-B1A7-48A1-A703-251BEFC58B83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE070C4E-B1A7-48A1-A703-251BEFC58B83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
