@@ -102,7 +102,12 @@ namespace VakantieParkUI_ParkManagement.KlantWindows.ReservatieMaken
             }
             catch (Exception ex)
             {
-                throw new UIException("ButtonClick_BeschikbareHuizenZoeken", ex);
+                Exception innerException = ex;
+                while (innerException.InnerException != null)
+                {
+                    innerException = innerException.InnerException;
+                }
+                MessageBox.Show(innerException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
